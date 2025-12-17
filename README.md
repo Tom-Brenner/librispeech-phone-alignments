@@ -7,11 +7,11 @@ Word- and phone-level timestamps for LibriSpeech.
 - A checksum (SHA-256) will be provided alongside each download link.
 
 ## Alignment and models
-- Primary alignment used MFA with the `english_us_mfa` acoustic + dictionary models.
+- Primary alignment used MFA with the `english_mfa` acoustic + `english_us_mfa` dictionary models.
 - Out-of-vocabulary words are handled with a G2P fallback pass.
 
 ## JSON schema (per file)
-- Top-level: map of `filename.json` -> `{ "words": {...}, "phones": {...} }`.
+- Top level: map of each per-speaker JSON name (e.g., `100-121669.json`) with audio filenames as keys mapping to `{ "words": {...}, "phones": {...} }`.
 - `words`: map of string indices to `{ "xmin": float, "xmax": float, "text": str }` (seconds).
 - `phones`: same structure for phone-level boundaries.
 - Floats are in seconds.
