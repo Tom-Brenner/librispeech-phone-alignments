@@ -1,6 +1,6 @@
 # librispeech-phone-alignments
 
-Word- and phone-level timestamps for LibriSpeech.
+Word- and phone-level timestamps for the LibriSpeech dataset.
 
 - Source alignments produced with the Montreal Forced Aligner; [CorentinJ/librispeech-alignments](https://github.com/CorentinJ/librispeech-alignments) is acknowledged for producing word-level timestamps nearly a decade earlier.
 - Archived json files will be attached as GitHub Release assets.
