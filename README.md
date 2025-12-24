@@ -17,10 +17,28 @@ Word- and phone-level timestamps for the LibriSpeech dataset.
 - Floats are in seconds.
 
 ## Downloads
-- LibriSpeech train-clean-360 phones JSON (gzipped):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-clean-360.json.gz  
-  SHA-256: `2b4b4165d789eb6961037baa0587b18c06b4b1466eb6eb810163e7ab5459adc4`
-  
+- LibriSpeech dev-clean (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-dev-clean.tar.gz  
+  SHA-256: `41d156c92c0e316b20cb9a11426e480ac05cdaf2fd34846e05bdb0423c42d792`
+- LibriSpeech dev-other (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-dev-other.tar.gz  
+  SHA-256: `f0040c44871b71b5286c94de3969097eca1e765fb2136b1bbf9dfa45e95c75a3`
+- LibriSpeech test-clean (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-test-clean.tar.gz  
+  SHA-256: `0b361593d13f850d5f69530d270b7ec6b5bf3fef315d68f6632e11b220d92921`
+- LibriSpeech test-other (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-test-other.tar.gz  
+  SHA-256: `751fbb81f4fa10208a792c6a6e8f064f07cf4ef9ffa85737358a711597be4e2b`
+- LibriSpeech train-clean-100 (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-clean-100.tar.gz  
+  SHA-256: `edaf7f8207b2a9a65d81c8d65a92ced9095d2de70cce71bdccad36f7a9f3800c`
+- LibriSpeech train-clean-360 (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-clean-360.tar.gz  
+  SHA-256: `769f3b010a4bfc65f2494e76c47d278dc40da5a68f9be2e8aeef50ebc232e0d8`
+- LibriSpeech train-other-500 (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-other-500.tar.gz  
+  SHA-256: `92962f7c990c02379ed265775ccfcbabb1a4bb955cea7e145f44e2eb0eb2e808`
+
 ## ToDo
 - Add remaining LibriSpeech datasets
 
