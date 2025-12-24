@@ -2,13 +2,12 @@
 
 Word- and phone-level timestamps for the LibriSpeech dataset.
 
-- Source alignments produced with the Montreal Forced Aligner; [LibriSpeech Alignments](https://zenodo.org/records/2619474) were released in March 2019. Differences in this version:
+- Source alignments produced with the Montreal Forced Aligner; [LibriSpeech Alignments](https://zenodo.org/records/2619474) were released in March 2019. 
 
-- MFA's IPA-like phones are used, while the original used arpabet. This was choice was made as the IPA-based english_us_mfa dictionary failed to phonemize fewer words than english_us_arpa. A script is provided to convert phones into arpabet, as the bulk of research work was done using the 2019 arpabet alignments.
-
-## Contribution
-- - The number of words returned as 'spn' (speech noise; whole-word failure to phonemize) is 6432, compare to 23018 in the original.
-- The missing files were reduced from 51 (~0.02% of LibriSpeech) in the original to 0. 
+## Differences in the current contribution
+- The number of words returned as 'spn' (speech noise; whole-word failure to phonemize) is 6432, compared to 23018 in the original.
+- Missing files were reduced from 51 (~0.02% of LibriSpeech) in the original to 0. 
+- MFA's IPA-like phones are used, while the original used arpabet. This choice was made as the IPA-based english_us_mfa dictionary showed better performance (fewer whole-word failures). A script is provided to convert phones into arpabet, given the amount of research that has been carried out using the 2019 arpabet alignments.
 
 
 ## Alignment and models
