@@ -2,15 +2,36 @@
 
 Word- and phone-level timestamps for the LibriSpeech dataset.
 
-- Source alignments produced with the Montreal Forced Aligner; [CorentinJ/librispeech-alignments](https://github.com/CorentinJ/librispeech-alignments) is acknowledged for producing word-level timestamps nearly a decade earlier.
-- Archived json files will be attached as GitHub Release assets.
-- A checksum (SHA-256) will be provided alongside each download link.
+- Source alignments produced with the Montreal Forced Aligner; [LibriSpeech Alignments](https://zenodo.org/records/2619474) were released in March 2019. Differences in this version:
+
+- MFA's IPA-like phones are used, while the original used arpabet. This was choice was made as the IPA-based english_us_mfa dictionary failed to phonemize fewer words than english_us_arpa. A script is provided to convert phones into arpabet, as the bulk of research work was done using the 2019 arpabet alignments.
+
+## Contribution
+- - The number of words returned as 'spn' (speech noise; whole-word failure to phonemize) is 6432, compare to 23018 in the original.
+- The missing files were reduced from 51 (~0.02% of LibriSpeech) in the original to 0. 
+
 
 ## Alignment and models
 - Primary alignment used MFA with the `english_mfa` acoustic + `english_us_mfa` dictionary models.
 - Out-of-vocabulary words are handled with a G2P fallback pass.
 
 ## JSON schema (per file)
+
+Each release asset (`*.tar.gz`) extracts to a directory with per-speaker subdirectories containing JSON files:
+
+```
+<extracted_root>/
+├── 19/
+│   ├── 19-198.json
+│   ├── 19-227.json
+│   └── ...
+├── 26/
+│   ├── 26-495.json
+│   ├── 26-496.json
+│   └── ...
+└── ...
+```
+
 - Top level: map of each per-speaker JSON name (e.g., `100-121669.json`) with audio filenames as keys mapping to `{ "words": {...}, "phones": {...} }`.
 - `words`: map of string indices to `{ "xmin": float, "xmax": float, "text": str }` (seconds).
 - `phones`: same structure for phone-level boundaries.
@@ -40,5 +61,8 @@ Word- and phone-level timestamps for the LibriSpeech dataset.
   SHA-256: `92962f7c990c02379ed265775ccfcbabb1a4bb955cea7e145f44e2eb0eb2e808`
 
 ## ToDo
-- Add remaining LibriSpeech datasets
+- Provide IPA-to-arpabet conversion script.
 
+## References
+- https://zenodo.org/records/2619474 (original 2019 LibriSpeech alignments)
+- Michael McAuliffe, Michaela Socolof, Sarah Mihuc, Michael Wagner, and Morgan Sonderegger. "Montreal Forced Aligner: trainable text-speech alignment using Kaldi", Interspeech 2017.
