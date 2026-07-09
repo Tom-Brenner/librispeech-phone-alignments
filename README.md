@@ -1,20 +1,23 @@
-# librispeech-phone-alignments
+# librispeech-vctk-phone-alignments
 
-Word- and phone-level timestamps for the LibriSpeech dataset.
+Word- and phone-level timestamps for the LibriSpeech and VCTK datasets.
 
 - Source alignments produced with the Montreal Forced Aligner; [LibriSpeech Alignments](https://zenodo.org/records/2619474) were released in March 2019. 
 
-## Differences in the current contribution
+---
+
+## LibriSpeech
+
+### Differences in the current contribution
 - The number of words returned as 'spn' (speech noise; whole-word failure to phonemize) is 6432, compared to 23018 in the original.
 - Missing files were reduced from 51 (~0.02% of LibriSpeech) in the original to 0. 
 - MFA's IPA-like phones are used, while the original used arpabet. This choice was made as the IPA-based english_us_mfa dictionary showed better performance (fewer whole-word failures). A script is provided to convert phones into arpabet, given the amount of research that has been carried out using the 2019 arpabet alignments.
 
-
-## Alignment and models
+### Alignment and models
 - Primary alignment used MFA with the `english_mfa` acoustic + `english_us_mfa` dictionary models.
 - Out-of-vocabulary words are handled with a G2P fallback pass.
 
-## JSON schema (per file)
+### JSON schema (per file)
 
 Each release asset (`*.tar.gz`) extracts to a directory with per-speaker subdirectories containing JSON files:
 
@@ -35,33 +38,107 @@ Each release asset (`*.tar.gz`) extracts to a directory with per-speaker subdire
 - `words`: map of string indices to `{ "xmin": float, "xmax": float, "text": str }` (seconds).
 - `phones`: same structure for phone-level boundaries.
 - Floats are in seconds.
+- Audio file keys use the `.flac` extension.
 
-## Downloads
+### Downloads
 - LibriSpeech dev-clean (tar.gz):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-dev-clean.tar.gz  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-dev-clean.tar.gz  
   SHA-256: `41d156c92c0e316b20cb9a11426e480ac05cdaf2fd34846e05bdb0423c42d792`
 - LibriSpeech dev-other (tar.gz):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-dev-other.tar.gz  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-dev-other.tar.gz  
   SHA-256: `f0040c44871b71b5286c94de3969097eca1e765fb2136b1bbf9dfa45e95c75a3`
 - LibriSpeech test-clean (tar.gz):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-test-clean.tar.gz  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-test-clean.tar.gz  
   SHA-256: `0b361593d13f850d5f69530d270b7ec6b5bf3fef315d68f6632e11b220d92921`
 - LibriSpeech test-other (tar.gz):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-test-other.tar.gz  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-test-other.tar.gz  
   SHA-256: `751fbb81f4fa10208a792c6a6e8f064f07cf4ef9ffa85737358a711597be4e2b`
 - LibriSpeech train-clean-100 (tar.gz):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-clean-100.tar.gz  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-clean-100.tar.gz  
   SHA-256: `edaf7f8207b2a9a65d81c8d65a92ced9095d2de70cce71bdccad36f7a9f3800c`
 - LibriSpeech train-clean-360 (tar.gz):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-clean-360.tar.gz  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-clean-360.tar.gz  
   SHA-256: `769f3b010a4bfc65f2494e76c47d278dc40da5a68f9be2e8aeef50ebc232e0d8`
 - LibriSpeech train-other-500 (tar.gz):  
-  https://github.com/Tom-Brenner/librispeech-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-other-500.tar.gz  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-train-other-500.tar.gz  
   SHA-256: `92962f7c990c02379ed265775ccfcbabb1a4bb955cea7e145f44e2eb0eb2e808`
 
-## ToDo
-- Provide IPA-to-arpabet conversion script.
+---
+
+## VCTK
+
+Alignments cover 107 speakers from the [CSTR VCTK Corpus v0.92](https://datashare.ed.ac.uk/handle/10283/3443) (~43 000 utterances total, mic2 recordings).
+
+### Alignment and models
+- Aligned with MFA using the `english_mfa` acoustic + `english_us_mfa` dictionary models, with a G2P fallback pass for out-of-vocabulary words.
+- Utterances where the forced aligner produced no output are excluded.
+
+### JSON schema (per file)
+
+The release asset extracts to a flat directory with one JSON per speaker:
+
+```
+VCTK-aligned/
+├── p225.json
+├── p226.json
+└── ...  (107 files)
+```
+
+- Each JSON contains audio filenames as keys mapping to `{ "words": {...}, "phones": {...} }`.
+- `words`: map of string indices to `{ "xmin": float, "xmax": float, "text": str }` (seconds).
+- `phones`: same structure for phone-level boundaries.
+- Floats are in seconds.
+- Audio file keys use the `.flac` extension and the `mic2` suffix (e.g., `p225_001_mic2.flac`), matching the `wav48_silence_trimmed/` directory of the VCTK corpus.
+
+### Downloads
+- VCTK aligned (tar.gz):  
+  https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.1.0/VCTK-aligned.tar.gz  
+  SHA-256: `bed24a4e7b7541813912de4efcf3c92973c8c601e0211b4dfe1af29036d51459`
+
+#### VCTK audio
+- Official corpus page (Edinburgh DataShare):  
+  https://datashare.ed.ac.uk/handle/10283/3443
+- Direct download (VCTK-Corpus-0.92.zip, ~11 GB):  
+  https://datashare.ed.ac.uk/bitstream/handle/10283/3443/VCTK-Corpus-0.92.zip
+
+---
+
+## Phone inventory conversion scripts
+
+### `ipa_to_arpabet.py`
+
+Converts the IPA-like phone labels used by MFA into ARPABET, while preserving the timestamp JSON schema. Applies to both LibriSpeech and VCTK alignments.
+
+Key details:
+
+- The script modifies only phone labels (the `text` field of phone intervals). Timestamps, ordering, and overall JSON structure are unchanged.
+- Stress is not represented in the IPA-like inventory; when converting to ARPABET, stress digits for vowels are therefore assigned by a default (configurable) value.
+- `spn` is preserved.
+
+#### Examples
+
+Convert a single JSON file (writes `<input>.arpa.json` by default):
+
+```bash
+python ipa_to_arpabet.py path/to/19-198.json
+```
+
+Convert a directory of JSONs (recursive; writes to a sibling directory `<input>_arpa` by default):
+
+```bash
+python ipa_to_arpabet.py path/to/extracted_root/
+```
+
+Assign a different default stress digit for vowels (0/1/2), or emit stress-less vowel bases:
+
+```bash
+python ipa_to_arpabet.py path/to/19-198.json --default_stress 0
+python ipa_to_arpabet.py path/to/19-198.json --default_stress none
+```
+
+---
 
 ## References
 - https://zenodo.org/records/2619474 (original 2019 LibriSpeech alignments)
+- Yamagishi, J., Veaux, C., & MacDonald, K. (2019). CSTR VCTK Corpus: English Multi-speaker Corpus for CSTR Voice Cloning Toolkit (version 0.92). University of Edinburgh. https://doi.org/10.7488/ds/2645
 - Michael McAuliffe, Michaela Socolof, Sarah Mihuc, Michael Wagner, and Morgan Sonderegger. "Montreal Forced Aligner: trainable text-speech alignment using Kaldi", Interspeech 2017.
