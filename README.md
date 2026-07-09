@@ -41,6 +41,14 @@ Each release asset (`*.tar.gz`) extracts to a directory with per-speaker subdire
 - Audio file keys use the `.flac` extension.
 
 ### Downloads
+
+#### LibriSpeech audio
+- Official corpus page (OpenSLR):  
+  https://www.openslr.org/12/
+- Direct downloads (e.g. train-clean-100, ~6.3 GB):  
+  https://www.openslr.org/resources/12/train-clean-100.tar.gz
+
+#### LibriSpeech alignments
 - LibriSpeech dev-clean (tar.gz):  
   https://github.com/Tom-Brenner/librispeech-vctk-phone-alignments/releases/download/v1.0.0/LibriSpeech-aligned-dev-clean.tar.gz  
   SHA-256: `41d156c92c0e316b20cb9a11426e480ac05cdaf2fd34846e05bdb0423c42d792`
